@@ -1,0 +1,108 @@
+<div class="container">
+  <br />
+  <h2 class="heading">REGISTER</h2>
+  <form [formGroup]="this.registerUserForm" (ngSubmit)="submitForm()">
+    <br />
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="firstName"
+        formControlName="firstName"
+      />
+      @if(registerUserForm.get('firstName')?.invalid &&
+      (registerUserForm.get('firstName')?.touched||registerUserForm.get('firstName')?.dirty))
+      {
+      <div class="text-danger">
+        {{ firstNameError }}
+      </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="lastName"
+        formControlName="lastName"
+      />
+      @if(registerUserForm.get('lastName')?.invalid &&
+      (registerUserForm.get('lastName')?.touched||registerUserForm.get('lastName')?.dirty))
+      {
+      <div class="text-danger">
+        {{ lastNameError }}
+      </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="email"
+        formControlName="email"
+      />
+      @if(registerUserForm.get('email')?.invalid &&
+      (registerUserForm.get('email')?.touched||registerUserForm.get('email')?.dirty)){
+      <div class="text-danger">
+        {{ emailError }}
+      </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        placeholder="password"
+        formControlName="password"
+      />
+      @if(registerUserForm.get('password')?.invalid &&
+      (registerUserForm.get('password')?.touched||registerUserForm.get('password')?.dirty)){
+      <div class="text-danger">
+        {{ passwordError }}
+      </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input
+        type="password"
+        class="form-control"
+        placeholder="confirmPassword"
+        formControlName="confirmPassword"
+      />
+      @if((registerUserForm.get('confirmPassword')?.invalid||
+      registerUserForm.hasError('passwordMismatch')) &&
+      (registerUserForm.get('confirmPassword')?.touched ||
+      registerUserForm.get('confirmPassword')?.dirty)) {
+      <div class="text-danger">
+        {{ confirmPasswordError }}
+      </div>
+      }
+    </div>
+
+    <br />
+
+    <button
+      type="submit"
+      [disabled]="!registerUserForm.valid"
+      class="btn btn-primary"
+    >
+      Submit
+    </button>
+  </form>
+
+  <br />
+  <p class="text-center">
+    Already have an account?
+    <a type="button" class="nav-link d-inline-block" routerLink="/login"
+      >Login</a
+    >
+  </p>
+</div>

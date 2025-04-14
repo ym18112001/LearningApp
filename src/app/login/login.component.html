@@ -1,0 +1,74 @@
+<div class="container">
+  <br />
+  <h2 class="heading">LOGIN</h2>
+  <form [formGroup]="registerUserForm" (ngSubmit)="submitForm()">
+    <br />
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+      autocomplete="email"
+        type="text"
+        class="form-control"
+        placeholder="email"
+        formControlName="email"
+        id="email"
+      />
+      @if(registerUserForm.get('email')?.invalid &&
+      (registerUserForm.get('email')?.touched||registerUserForm.get('email')?.dirty)){
+      <div class="text-danger">
+        {{ emailError }}
+      </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+      autocomplete="current-password"
+        type="password"
+        class="form-control"
+        placeholder="password"
+        formControlName="password"
+        id="password"
+      />
+      @if(registerUserForm.get('password')?.invalid &&
+      (registerUserForm.get('password')?.touched||registerUserForm.get('password')?.dirty)){
+      <div class="text-danger">
+        {{ passwordError }}
+      </div>
+      }
+    </div>
+    <div class="form-group">
+      <div class="custom-control custom-checkbox">
+        <input
+          id="rememberMe"
+          type="checkbox"
+          class="custom-control-input"
+          formControlName="rememberMe"
+        />
+        <label class="custom-control-label" for="rememberMe">
+          Remember Me
+          </label>
+      </div>
+    </div>
+
+    <br />
+
+    <button
+      type="submit"
+      [disabled]="!registerUserForm.valid"
+      class="btn btn-primary"
+    >
+      Submit
+    </button>
+  </form>
+
+  <br />
+  <p class="text-center">
+    Don't Have an Account?
+    <a type="button" class="nav-link d-inline-block" routerLink="/register"
+      >Register</a
+    >
+  </p>
+</div>
