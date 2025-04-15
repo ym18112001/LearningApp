@@ -7,4 +7,4 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
       ? null
       : { passwordMismatch: true };
 
-     export default passwordMatchValidator;
+     export default passwordMatchValidator;   

@@ -1,20 +1,27 @@
 import { Component, inject } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+
+import { CommonModule } from '@angular/common'; // ✅ For *ngIf, *ngFor
+import { RouterLink } from '@angular/router'; // ✅ Needed for routerLink in the template
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, RouterLink],
+  standalone: true,
+  imports: [
+    CommonModule,           // ✅ Enables *ngIf and other directives
+    ReactiveFormsModule,    // ✅ Enables formGroup, formControlName, etc.
+    RouterLink              // ✅ Enables [routerLink] in the template
+  ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent {
+  emailFocused = false;
+  passwordFocused = false;
+  
   constructor(private readonly router: Router , private readonly route : ActivatedRoute) {}
   auth = inject(AuthService);
   submitForm() {
