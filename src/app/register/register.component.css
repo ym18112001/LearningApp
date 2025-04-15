@@ -77,9 +77,9 @@
 
 .form-control:focus + label,
 .form-control:not(:placeholder-shown) + label {
-  top: -8px;
+  top: -9px;
   font-size: 13px;
-  color: #8338ec;
+  color: #6b7280;
 }
 
 .form-control:focus {

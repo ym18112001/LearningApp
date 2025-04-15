@@ -4,6 +4,8 @@
       <img src="Login.webp" alt="login illustration" />
     </div>
     
+    <div class="login-divider"></div>
+
     <div class="login-form-container">
       <h2 class="heading">Log in to continue your learning journey</h2>
       <form [formGroup]="registerUserForm" (ngSubmit)="submitForm()">
@@ -59,13 +61,20 @@
         </button>
       </form>
 
+      <!-- The new divider -->
+      <div class="divider-container">
+        <div class="divider-line"></div>
+        <span class="divider-text">or</span>
+        <div class="divider-line"></div>
+      </div>
+
       <div class="login-extra-options">
-        <!-- <p>Other log in options</p>
+        <p>Other log in options</p>
         <div class="login-icons">
-          <i class="fab fa-google"></i>
-          <i class="fab fa-facebook"></i>
-          <i class="fab fa-apple"></i>
-        </div> -->
+          <a href="#" class="google-icon"><i class="fab fa-google"></i></a>
+          <a href="#" class="facebook-icon"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="apple-icon"><i class="fab fa-apple"></i></a>
+        </div>
 
         <p>
           Don't have an account?
