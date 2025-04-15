@@ -9,14 +9,21 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import passwordMatchValidator from '../customValidators/passwordMatchValidator';
 import { AuthService } from '../auth.service';
 
+import { CommonModule } from '@angular/common'; // ✅ For *ngIf, *ngFor
+
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule,RouterLink],
+  imports: [CommonModule,ReactiveFormsModule,RouterLink],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
-
+  firstNameFocused = false;
+  lastNameFocused = false;
+  emailFocused = false;
+  passwordFocused = false;
+  confirmPasswordFocused = false;
+  
   private readonly auth = inject(AuthService);
   constructor(private readonly router: Router , private readonly route : ActivatedRoute) {}
   submitForm() {

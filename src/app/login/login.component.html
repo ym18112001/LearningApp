@@ -1,74 +1,77 @@
-<div class="container">
-  <br />
-  <h2 class="heading">LOGIN</h2>
-  <form [formGroup]="registerUserForm" (ngSubmit)="submitForm()">
-    <br />
-
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input
-      autocomplete="email"
-        type="text"
-        class="form-control"
-        placeholder="email"
-        formControlName="email"
-        id="email"
-      />
-      @if(registerUserForm.get('email')?.invalid &&
-      (registerUserForm.get('email')?.touched||registerUserForm.get('email')?.dirty)){
-      <div class="text-danger">
-        {{ emailError }}
-      </div>
-      }
+<div class="login-wrapper">
+  <div class="login-content">
+    <div class="login-image">
+      <img src="Login.webp" alt="login illustration" />
     </div>
+    
+    <div class="login-form-container">
+      <h2 class="heading">Log in to continue your learning journey</h2>
+      <form [formGroup]="registerUserForm" (ngSubmit)="submitForm()">
+        <!-- Email with Floating Label -->
+        <div class="form-group">
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            formControlName="email"
+            placeholder=" "
+            (focus)="emailFocused = true"
+            (blur)="emailFocused = false"
+            [ngClass]="{'has-value': registerUserForm.get('email')?.value || emailFocused}"
+          />
+          <label for="email">Email</label>
+          <div class="text-danger" *ngIf="emailError">
+            {{ emailError }}
+          </div>
+        </div>
 
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input
-      autocomplete="current-password"
-        type="password"
-        class="form-control"
-        placeholder="password"
-        formControlName="password"
-        id="password"
-      />
-      @if(registerUserForm.get('password')?.invalid &&
-      (registerUserForm.get('password')?.touched||registerUserForm.get('password')?.dirty)){
-      <div class="text-danger">
-        {{ passwordError }}
-      </div>
-      }
-    </div>
-    <div class="form-group">
-      <div class="custom-control custom-checkbox">
-        <input
-          id="rememberMe"
-          type="checkbox"
-          class="custom-control-input"
-          formControlName="rememberMe"
-        />
-        <label class="custom-control-label" for="rememberMe">
-          Remember Me
+        <!-- Password with Floating Label -->
+        <div class="form-group">
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            formControlName="password"
+            placeholder=" "
+            (focus)="passwordFocused = true"
+            (blur)="passwordFocused = false"
+            [ngClass]="{'has-value': registerUserForm.get('password')?.value || passwordFocused}"
+          />
+          <label for="password">Password</label>
+          <div class="text-danger" *ngIf="passwordError">
+            {{ passwordError }}
+          </div>
+        </div>
+        
+        <div class="remember-me-wrapper">
+          <label>
+            <input
+              type="checkbox"
+              formControlName="rememberMe"
+              class="remember-checkbox"
+            />
+            Remember Me
           </label>
+        </div>
+
+        <button type="submit" [disabled]="registerUserForm.invalid" class="btn-primary w-100">
+          Continue with email
+        </button>
+      </form>
+
+      <div class="login-extra-options">
+        <!-- <p>Other log in options</p>
+        <div class="login-icons">
+          <i class="fab fa-google"></i>
+          <i class="fab fa-facebook"></i>
+          <i class="fab fa-apple"></i>
+        </div> -->
+
+        <p>
+          Don't have an account?
+          <a routerLink="/register">Sign up</a>
+        </p>
       </div>
     </div>
-
-    <br />
-
-    <button
-      type="submit"
-      [disabled]="!registerUserForm.valid"
-      class="btn btn-primary"
-    >
-      Submit
-    </button>
-  </form>
-
-  <br />
-  <p class="text-center">
-    Don't Have an Account?
-    <a type="button" class="nav-link d-inline-block" routerLink="/register"
-      >Register</a
-    >
-  </p>
+  </div>
 </div>
