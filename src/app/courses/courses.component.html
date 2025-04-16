@@ -1,0 +1,44 @@
+<div class="courses-container">
+
+    <div class="header-image">
+        <img src="https://img-c.udemycdn.com/notices/web_carousel_slide/image/3d5da4b4-da7b-4b66-91db-6ea75f1b82a6.png" alt="Learning Header Image">
+    </div>
+
+    <!-- Heading -->
+    <div class="header">
+      <h2>All the skills you need in one place</h2>
+      <p>From critical skills to technical topics, we support your professional development.</p>
+    </div>
+  
+    <!-- Category Tabs -->
+    <ul class="category-tabs">
+      <li *ngFor="let category of categories" 
+          (click)="selectedCategory = category" 
+          [class.active]="selectedCategory === category">
+        {{ category.name }}
+        <small>{{ category.learners }}</small>
+      </li>
+    </ul>
+  
+    <!-- Course Cards Grid -->
+    <div class="courses-grid">
+      <div *ngFor="let course of selectedCategory?.courses" class="course-card">
+        <img [src]="course.image" [alt]="course.name" class="course-image">
+  
+        <div class="course-body">
+          <h4 class="course-name">{{ course.name }}</h4>
+          <p class="course-description">{{ course.description }}</p>
+          <div class="course-rating">
+            <span class="stars">
+              {{ getStarRating(course.rating).display }}
+            </span>
+            <span *ngIf="course.tag" class="tag">{{ course.tag }}</span>
+          </div>
+          <div class="course-price">{{ course.price }}</div>
+        </div>
+      </div>
+    </div>
+  
+    
+  </div>
+  

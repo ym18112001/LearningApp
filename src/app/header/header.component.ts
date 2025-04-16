@@ -70,4 +70,5 @@ ApiCall() {
   }
 
   // Add any methods or properties needed for the header component here
+  
 }
