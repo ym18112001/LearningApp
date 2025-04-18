@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common'; 
 import { RouterLink } from '@angular/router'; 
 
@@ -9,8 +9,10 @@ import { RouterLink } from '@angular/router';
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.css'
 })
-export class CoursesComponent {
+export class CoursesComponent implements OnInit, OnDestroy {
   
+  constructor(private router: Router) {}
+
     categories = [
       {
         name: 'Deep Learning',
@@ -97,6 +99,29 @@ export class CoursesComponent {
       }
     ];
 
+    images: string[] = [
+      'https://img-c.udemycdn.com/notices/web_carousel_slide/image/3d5da4b4-da7b-4b66-91db-6ea75f1b82a6.png',
+      'https://img-c.udemycdn.com/notices/web_carousel_slide/image/9652f354-5e37-400c-856e-ee28f98f27d6.png',
+      'https://i.pinimg.com/originals/dc/55/a7/dc55a7baa9cbd457221ae6d12d9b1b51.jpg'
+    ];
+  
+    currentImageIndex = 0;
+    currentImage = this.images[0];
+    private intervalId: any;
+  
+    ngOnInit(): void {
+      this.intervalId = setInterval(() => {
+        this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
+        this.currentImage = this.images[this.currentImageIndex];
+      }, 3000);
+    }
+  
+    ngOnDestroy(): void {
+      if (this.intervalId) {
+        clearInterval(this.intervalId);
+      }
+    }
+
     selectedCategory = this.categories[0];
     getStarRating(rating: number): { stars: string, display: string } {
       const fullStars = Math.floor(rating);
@@ -147,4 +172,13 @@ export class CoursesComponent {
       this.selectedImage = imagePath;
     }
     
+    goToCourse(course: any, category: string) {
+      this.router.navigate(['/courses', course.name], {
+        state: {
+          course,
+          categories: this.categories,
+        }
+      });
+    }    
+
   }

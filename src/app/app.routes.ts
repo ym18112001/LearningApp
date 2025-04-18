@@ -8,6 +8,7 @@ import { authGuard } from './auth.guard';
 import { authResolver } from './auth.resolver';
 import { noAuthGuard } from './no-auth.guard';
 import { CoursesComponent } from './courses/courses.component';
+import { CoursepageComponent } from './coursepage/coursepage.component';
 
 export const routes: Routes = [
 
@@ -19,6 +20,7 @@ export const routes: Routes = [
       resolve:{user:authResolver}
     },
     { path: 'courses', component: CoursesComponent },
+    { path: 'courses/:id', component: CoursepageComponent },
     { path: 'login', component: LoginComponent ,title:'Login' , canActivate:[noAuthGuard] },
     { path: 'register', component: RegisterComponent,title:'Register', canActivate:[noAuthGuard]},
     {path :'notfound', component: NotfoundComponent, title:'Not Found'},
