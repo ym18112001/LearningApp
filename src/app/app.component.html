@@ -1,7 +1,7 @@
-<div class="d-flex flex-column min-vh-100">
-    <app-header/>
-    <main class="flex-grow-1 justify-content-center align-content-center">
+<div>
+    <app-header *ngIf="showHeader"></app-header>
+    <main>
         <router-outlet/>
     </main>
-    <app-footer/>
-  </div>
+    <app-footer *ngIf="showHeader"></app-footer>
+</div>
