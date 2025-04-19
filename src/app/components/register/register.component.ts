@@ -6,10 +6,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import passwordMatchValidator from '../customValidators/passwordMatchValidator';
-import { AuthService } from '../auth.service';
+
 
 import { CommonModule } from '@angular/common'; // ✅ For *ngIf, *ngFor
+import { AuthService } from '../../auth.service';
+import passwordMatchValidator from '../../customValidators/passwordMatchValidator';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +24,7 @@ export class RegisterComponent {
   emailFocused = false;
   passwordFocused = false;
   confirmPasswordFocused = false;
-  
+
   private readonly auth = inject(AuthService);
   constructor(private readonly router: Router , private readonly route : ActivatedRoute) {}
   submitForm() {

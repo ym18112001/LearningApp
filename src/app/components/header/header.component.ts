@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { AuthService, User } from '../auth.service';
+
 import { inject } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
+import { AuthService, User } from '../../auth.service';
 
 @Component({
   selector: 'app-header',
@@ -70,5 +71,5 @@ ApiCall() {
   }
 
   // Add any methods or properties needed for the header component here
-  
+
 }

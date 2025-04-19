@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+
 
 import { CommonModule } from '@angular/common'; // ✅ For *ngIf, *ngFor
 import { RouterLink } from '@angular/router'; // ✅ Needed for routerLink in the template
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,7 @@ import { RouterLink } from '@angular/router'; // ✅ Needed for routerLink in th
 export class LoginComponent {
   emailFocused = false;
   passwordFocused = false;
-  
+
   constructor(private readonly router: Router , private readonly route : ActivatedRoute) {}
   auth = inject(AuthService);
   submitForm() {

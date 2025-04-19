@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../auth.service';
+
 
 @Component({
   selector: 'app-mock',
@@ -23,7 +24,7 @@ export class MockComponent implements OnInit{
 
       }
     )
-    
+
   }
 
 }
